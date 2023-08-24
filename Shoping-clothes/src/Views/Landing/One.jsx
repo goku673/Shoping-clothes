@@ -1,20 +1,40 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
-import Two from "./Two"; // Asegúrate de importar el componente Two correctamente
 
 const One = () => {
   return (
-   
-      <Splide options={{ direction: "ttb", perPage: 1, height: "500px"  }}>
-        <SplideSlide>
-          <Two style={{ width: "100%", height: "100%" }}/>
-        </SplideSlide>
-        <SplideSlide>
-          <Two style={{ width: "100%", height: "100%" }}/>
-        </SplideSlide>
-        {/* Agrega más SplideSlide según sea necesario */}
-      </Splide>
+    <div id="one">
+    <Splide options={{ type: "slide", perPage: 1 }}>
+      <SplideSlide>
+        <div className="h-screen flex justify-center items-center">
+          <img
+            src="https://im.uniqlo.com/global-cms/spa/resf4a0180a90ba62ffac27b182806e0d42fr.jpg"
+            alt="Imagen 1"    
+            className="min-h-full w-full"
+          />
+        </div>
+      </SplideSlide>
+      <SplideSlide>
+        <div className="h-screen flex justify-center items-center">
+          <img
+            src="https://im.uniqlo.com/global-cms/spa/res14d4f3130de0a49816a9f42c76de003bfr.jpg"
+            alt="Imagen 2"
+            className="min-h-full w-full"
+          />
+        </div>
+      </SplideSlide>
+      <SplideSlide>
+        <div className="h-screen flex justify-center items-center">
+          <img
+            src="https://im.uniqlo.com/global-cms/spa/resab60cafe1e5c00e28ecbf5e53a244c92fr.jpg"
+            alt="Imagen 3"
+            className="min-h-full w-full"
+          />
+        </div>
+      </SplideSlide>
+    </Splide>
+    </div>
   );
 };
 

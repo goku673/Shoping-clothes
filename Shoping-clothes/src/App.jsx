@@ -1,5 +1,4 @@
 import './App.css'
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importa BrowserRouter y utiliza "as Router"
 import Landing from './Views/Landing/Landing';
 import Registro from './Views/Registro';

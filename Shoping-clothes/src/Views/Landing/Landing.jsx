@@ -42,7 +42,7 @@ const Landing = () => {
             width: "100%",
             height: "100%",
             transform: `translateY(-${currentComponent * 100}vh)`,
-            transition: "transform 0.5s ease",
+            transition: "transform 0.7s ease",
           }}
         >
           <Component />

@@ -1,6 +1,6 @@
 import './App.css'
-import ContextProvider from './Context/Context';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importa BrowserRouter y utiliza "as Router"
+import ContextProvider from './Context/ContextCarrito';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 import Landing from './Views/Landing/Landing';
 
 function App() {

@@ -1,4 +1,4 @@
-// Registro.js
+
 import React, { useContext, useState } from 'react';
 import { RegistroContext } from '../Context/ContextRegistro';
 import axios from 'axios';
@@ -82,3 +82,4 @@ const Registro =  () => {
 };
 
 export default Registro;
+

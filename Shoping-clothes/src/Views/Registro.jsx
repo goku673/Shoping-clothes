@@ -1,12 +1,13 @@
 // Registro.js
 import React, { useContext, useState } from 'react';
 import { RegistroContext } from '../Context/ContextRegistro';
+import axios from 'axios';
 
-const Registro = () => {
+const Registro =  () => {
   const { name, password, setName, setPassword } = useContext(RegistroContext);
   const [repeatPassword, setRepeatPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     if (password !== repeatPassword) {
@@ -26,15 +27,24 @@ const Registro = () => {
     }
   
     if(name.length === 0 ){
-       alert("complete todos los campos porfavor")
+       alert("complete todos los campos porfavor");
+       return;
     }
-
+        //'http://localhost:3003/user/mgDB'
         // me falta hacer que los datos se me guarden en la base de datos 
-
+         
         console.log({
           name,
           password
         })
+       const response = (await axios.post('http://localhost:3003/user/mgDB', {name, password})).data;
+       console.log(response);
+
+        
+     
+        setName('');
+        setPassword('');
+        setRepeatPassword('');
   };
 
   return (

@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./routes/index');
+require('dotenv').config();
+const {USER,PASSWORD,DB_NAME}= process.env;
 
-const user = 'userforshoping';
-const password = '65DD1R913zTMa63M';
-const DB_Name = 'shoping';
-const uri = `mongodb+srv://${user}:${password}@cluster0.offjxfc.mongodb.net/${DB_Name}?retryWrites=true&w=majority`;
+
+const uri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.offjxfc.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

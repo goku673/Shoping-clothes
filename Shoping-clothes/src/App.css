@@ -5,8 +5,8 @@
   }
 
 .splide__pagination__page {
-    background-color:#e1ddd3 !important;
-
+    background-color:#595858 !important;
+  margin-bottom: 6rem !important;
 }
 
 .splide__pagination__page.is-active {

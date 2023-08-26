@@ -11,6 +11,8 @@ const Landing = () => {
 
   useEffect(() => {
     const handleScroll = (event) => {
+      event.preventDefault();
+
       if (!isScrolling) {
         isScrolling = true;
         const delta = event.deltaY;
@@ -27,11 +29,13 @@ const Landing = () => {
       }
     };
 
-    containerRef.current.addEventListener("wheel", handleScroll, { passive: false });
+    const containerElement = containerRef.current;
+    containerElement.addEventListener("wheel", handleScroll, { passive: false });
     return () => {
-      containerRef.current.removeEventListener("wheel", handleScroll);
+      containerElement.removeEventListener("wheel", handleScroll);
     };
   }, []);
+
 
   return (
     <div ref={containerRef} style={{ height: "100vh", overflow: "hidden" }}>

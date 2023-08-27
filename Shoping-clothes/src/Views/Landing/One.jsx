@@ -17,7 +17,7 @@ const One = () => {
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
               <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 1</h2>
               <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-primary" style={{ fontWeight: "bold" }}>Botón</button>
+              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
             </div>
           </div>
         </SplideSlide>
@@ -31,7 +31,7 @@ const One = () => {
             <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
               <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 2</h2>
               <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-primary" style={{ fontWeight: "bold" }}>Botón</button>
+              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
             </div>
           </div>
         </SplideSlide>
@@ -45,7 +45,7 @@ const One = () => {
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
               <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 3</h2>
               <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-primary" style={{ fontWeight: "bold" }}>Botón</button>
+              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
             </div>
           </div>
         </SplideSlide>
@@ -59,7 +59,7 @@ const One = () => {
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
               <h2 className="display-4 mb-4 bold" style={{ fontWeight: "bold" }}>Texto encima de la imagen 4</h2>
               <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-primary" style={{ fontWeight: "bold" }}>Botón</button>
+              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
             </div>
           </div>
         </SplideSlide>

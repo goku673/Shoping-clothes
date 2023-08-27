@@ -17,10 +17,10 @@ mongoose
 const servidor = express();
 
 servidor.use(morgan('dev'));
-servidor.use(bodyParser.urlencoded({ extended: true }));
+      servidor.use(bodyParser.urlencoded({ extended: true }));
 servidor.use(bodyParser.json());
 
-// Configuración de CORS
+
 servidor.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -28,7 +28,6 @@ servidor.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   
   if (req.method === 'OPTIONS') {
-    // Preflight request. Respond successfully:
     res.status(200).send();
   } else {
     next();

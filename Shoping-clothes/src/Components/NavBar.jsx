@@ -1,16 +1,21 @@
-import React from "react";
-import { FaHome, FaShoppingCart, FaGalacticRepublic ,FaUser} from "react-icons/fa";
+import React, { useState } from "react";
+import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toHome = () => {
-    navigate("/home");
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const toLanding = () => {
     navigate("/");
+  }
+
+  const toHome = () => {
+    navigate("/home");
   };
 
   const toCarrito = () => {
@@ -22,52 +27,74 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-gray-900 py-3  ">
-      <div className="container">
+    <nav className="bg-gray-900 py-3">
+      <div className="container flex items-center justify-between">
         <FaGalacticRepublic
           onClick={toLanding}
-          className="navbar-brand "
-          style={{ fontSize: "3rem", cursor: "pointer",color: "white" }}
+          className="text-white cursor-pointer"
+          style={{ fontSize: "2.8rem"}}
         />
-   
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <span
-              onClick={toHome}
-              className="nav-link"
-              style={{ fontSize: "1.8rem", cursor: "pointer",color: "white" }}
-            >
-              <FaHome className="mr-2 " />
-             
-            </span>
-          </li>
-          <li className="nav-item">
-            <span
-              onClick={toCarrito}
-              className="nav-link"
-              style={{ fontSize: "1.8rem", cursor: "pointer" ,color: "white"}}
-            >
-              <FaShoppingCart className="mr-2" />
-          
-            </span>
-          </li>
 
-          <span  
-              onClick={toCarrito}
-              className="nav-link"
-              style={{ fontSize: "1.8rem", cursor: "pointer" ,color: "blue"}}>
-                <FaUser/>
+        <div className="hidden lg:flex items-center space-x-6">
+          <span
+            onClick={toHome}
+            className="text-white cursor-pointer"
+            style={{ fontSize: "2rem"}}
+          >
+            <FaHome className="mr-4" />
           </span>
-        </ul>
-        
-      </div>
+          <span
+            onClick={toCarrito}
+            className="text-white cursor-pointer"
+            style={{ fontSize: "2rem"}}
+          >
+            <FaShoppingCart className="mr-4" />
+          </span>
+          <button
+            onClick={toForm}
+            className="btn btn-dark btn-sm "
+            style={{ fontSize: "1.2rem", marginLeft:"2rem"}}
+          >
+            Registrarse
+          </button>
+        </div>
+
         <button
-          onClick={toForm}
-          className="btn btn-dark btn-sm"
-          style={{ fontSize: "1.2rem",  marginRight: "5rem" }}
+          className="lg:hidden text-white text-2xl ml-2"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation"
         >
-          Registrarse
+          <FaBars />
         </button>
+
+        {isMenuOpen && (
+          <div className="lg:hidden absolute top-14 right-0 bg-gray-900 p-4 w-48 rounded-md shadow-lg" style={{ zIndex: 999 }}>
+          <span
+            onClick={toHome}
+            className="text-white cursor-pointer block mb-2 flex flex-row items-center"
+            style={{ fontSize: "1.5rem"}}
+          >
+            <FaHome className="mr-2" />
+            Home
+          </span>
+          <span
+            onClick={toCarrito}
+            className="text-white cursor-pointer block mb-2 flex flex-row items-center"
+            style={{ fontSize: "1.5rem"}}
+          >
+            <FaShoppingCart className="mr-2" />
+            Cart
+          </span>
+          <button
+            onClick={toForm}
+            className="btn btn-dark btn-sm w-full"
+            style={{ fontSize: "1.2rem"}}
+          >
+            Registrarse
+          </button>
+        </div>
+        )}
+      </div>
     </nav>
   );
 };

@@ -5,12 +5,12 @@ export const RegistroContext = createContext();
 
 
 const ProveedorRegistro = (props) => {
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
   return (
-    <RegistroContext.Provider value={{ name, password, setName, setPassword }}>
+    <RegistroContext.Provider value={{ email, password, setEmail, setPassword }}>
       {props.children}
     </RegistroContext.Provider>
   );

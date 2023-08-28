@@ -1,85 +1,109 @@
-
 import React, { useContext, useState } from 'react';
 import { RegistroContext } from '../Context/ContextRegistro';
 import axios from 'axios';
 
-const Registro =  () => {
-  const { name, password, setName, setPassword } = useContext(RegistroContext);
+const Registro = () => {
+  const { email, password, setEmail, setPassword } = useContext(RegistroContext);
   const [repeatPassword, setRepeatPassword] = useState('');
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('El email no es válido');
+      return;
+    }
+
     if (password !== repeatPassword) {
-      alert("Las contraseñas no coinciden");
+      alert('Las contraseñas no coinciden');
       return;
     }
 
     if (password.length < 8) {
-      alert("La contraseña debe tener al menos 8 caracteres");
+      alert('La contraseña debe tener al menos 8 caracteres');
       return;
     }
 
     const numericCharacters = password.replace(/[^0-9]/g, '');
     if (numericCharacters.length < 2) {
-      alert("La contraseña debe contener al menos 2 números");
+      alert('La contraseña debe contener al menos 2 números');
       return;
     }
-  
-    if(name.length === 0 ){
-       alert("complete todos los campos porfavor");
-       return;
-    }
-        //'http://localhost:3003/user/mgDB'
-        // me falta hacer que los datos se me guarden en la base de datos 
-         
-        console.log({
-          name,
-          password
-        })
-       const response = (await axios.post('http://localhost:3003/user/mgDB', {name, password})).data;
-       console.log(response);
 
-        
-     
-        setName('');
-        setPassword('');
-        setRepeatPassword('');
+    if (email.length === 0) {
+      alert('Complete todos los campos por favor');
+      return;
+    }
+
+    // Petición HTTP para guardar en base de datos
+    const response = (await axios.post('http://localhost:3003/user/mgDB', {
+      email,
+      password
+    })).data;
+
+    console.log(response);
+
+    setEmail('');
+    setPassword('');
+    setRepeatPassword('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="nombre">Nombre</label>
-        <input
-          type="text" className="form-control" id="nombre" pattern="[A-Za-z]*" value={name}
-          onChange={(e) => setName(e.target.value)}  title= "Por favor, ingresa solo letras."
-        />
+    <div className='flex justify-center'>
+      <div className='w-1/3  mt-16 bg-white rounded-md shadow-md'>
+        <form onSubmit={handleSubmit} className="bg-gray-100 p-7 rounded-md">
+          <h2 className="text-2xl font-bold mb-6">Registro</h2>
+
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+              Email
+            </label>
+
+            <input
+              type="email"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+              password
+            </label>
+
+            <input
+              type="password"
+              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="repeatPassword" className="block text-gray-700 text-sm font-bold mb-2">
+               repit password
+            </label>
+
+            <input
+              type="password"
+              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="repeatPassword"
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" className="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Enviar
+          </button>
+        </form>
       </div>
-      <div className="form-group">
-        <label htmlFor="contraseña">Contraseña</label>
-        <input
-          type='password'
-          className="form-control"
-          id='contraseña'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="repeatPassword">Repetir contraseña</label>
-        <input
-          type='password'
-          className="form-control"
-          id='repeatPassword'
-          value={repeatPassword}
-          onChange={(e) => setRepeatPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">Enviar</button>
-    </form>
+    </div>
   );
 };
 
 export default Registro;
-

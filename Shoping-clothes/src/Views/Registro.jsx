@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { RegistroContext } from '../Context/ContextRegistro';
+import { FiEyeOff, FiEye } from 'react-icons/fi'
 import axios from 'axios';
+
 
 const Registro = () => {
   const { email, password, setEmail, setPassword } = useContext(RegistroContext);
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +58,7 @@ const Registro = () => {
         <form onSubmit={handleSubmit} className="bg-gray-100 p-7 rounded-md">
           <h2 className="text-2xl font-bold mb-6">Registro</h2>
 
-          <div className="mb-4">
+          <div className="mb-4  items-center">
             <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>
@@ -69,25 +72,31 @@ const Registro = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+          <div className="mb-2  items-center">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2 relative">
               password
             </label>
-
+            <span onClick={() => setShowPassword(!showPassword)} className="ml-2">
+              {showPassword ? (<FiEye />) : (<FiEyeOff />)}
+            </span>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
+            
           </div>
 
-          <div>
+          <div className="mb-2 items-center">
             <label htmlFor="repeatPassword" className="block text-gray-700 text-sm font-bold mb-2">
-               repit password
+              repit password
             </label>
-
+            <span onClick={() => setShowPassword(!showPassword)} className="ml-2">
+              {showPassword ? (<FiEye />) : (<FiEyeOff />)}
+            </span>
             <input
               type="password"
               className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,6 +104,8 @@ const Registro = () => {
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
+
+
           </div>
 
           <button type="submit" className="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

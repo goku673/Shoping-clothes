@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 // los modelos para mi usuario 
 
 const userSchema  =  new Schema({
+      name : String,
       email : String,
       password : String
 });

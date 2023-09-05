@@ -7,7 +7,7 @@ import NavBar from './Components/NavBar';
 import Carrito from './Views/Carrito';
 import Home from './Views/Home';
 import { useLocation } from 'react-router-dom';
-
+import Card from './Components/Card';
 function App() {
 
   const location = useLocation();
@@ -22,6 +22,7 @@ function App() {
       <Route path='/form' element={<Registro />} />
       <Route path='/Home' element={<Home />} />
       <Route path='/Carrito' element={<Carrito />} />
+      <Route path='/3d' element={<Card/>}/>
     </Routes>
   </div>
     

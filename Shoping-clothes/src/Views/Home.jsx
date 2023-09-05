@@ -4,21 +4,65 @@ import { useState } from "react";
 import { FiChevronDown } from 'react-icons/fi';
 import { BiSearch } from 'react-icons/bi';
 import Cards from "../Components/Cards";
+import { useEffect } from "react";
+
 const Home = () => {
-  const { shoping, categorias } = useContext(ShopingContext);
-  console.log(shoping);
-  console.log("soy la catergoria",categorias);
-  
+  const { products, categories } = useContext(ShopingContext);
+  //console.log('mis ropas');
+
+  const [order,setOrder] = useState('');
+  const [filters, setFilters] = useState('');
+  const [search, setSearch] = useState('');
+  //const [fiterData, setFilteredData]= useState([]);
+  console.log(search);
+  // console.log(order);
+  // console.log(filters);
+  // console.log(serach);
+
+  // para enviar info
+ // copyFilterCountries.slice().sort((a, b) => a.name.localeCompare(b.name), 'es', { sensitivity: 'base' });
+
 
   const getSelectCategories = () => {
     return (
-      <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none">
-        {categorias.map((element) => (
+      <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none" onChange={(e) => {setFilters(e.target.value)}}>
+        {categories.map((element) => (
           <option key={element}value={element}>{element}</option>
         ))}
       </select>
     );
   };
+  
+  const orderBy = (products,order) => {
+    let result = [];
+    if(order === 'asc'){
+        result = products.slice().sort((a, b) => a.title.localeCompare(b.title), 'es', { sensitivity: 'base' });
+    }else if(order === 'des'){
+       result = products.slice().sort((a, b) => b.title.localeCompare(a.title), 'es', { sensitivity: 'base' });
+    }
+   return result;
+  }
+
+  const filterData = (products, filters) => {
+    return products.filter(p => p.category === filters);
+  }
+  
+  const searchData = (products, search) => {
+    return products.filter(p => p.title.toLowerCase().includes(search.toLowerCase()));
+  }
+
+  const filteredData = () => {
+    if(filters) {
+      return filterData(products, filters);
+    }
+    if(search) {
+      return searchData(products, search);  
+    }
+    if(order){
+      return orderBy(products,order);
+    }
+    return products;
+  }
   return (
     <div>
 
@@ -27,10 +71,10 @@ const Home = () => {
         <div className="flex items-center h-16 justify-center">
           <div className="flex items-center">
             <div className="relative mr-4">
-              <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none">
-                <option>order by</option>
-                <option>ASC</option>
-                <option>DES</option>
+              <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none" onChange={(e) => {setOrder(e.target.value )}}>
+                <option value=''>order by</option>
+                <option value='asc'>ASC</option>
+                <option value='des'>DES</option>
               </select>
               <span className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                 <FiChevronDown className="w-4 h-4"/>
@@ -42,7 +86,7 @@ const Home = () => {
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                   <BiSearch className="w-5 h-5" />
                 </div>
-                <input id="search" className="block w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Buscar" type="search" />
+                <input id="search" value={search} className="block w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Buscar" type="search" onChange={(e) => setSearch(e.target.value)} />
               </div>
             </div>
             <div className="relative ml-4">
@@ -55,7 +99,7 @@ const Home = () => {
         </div>
       </div>
     </nav>
-     <Cards data ={shoping}/>
+     <Cards data ={filteredData()}/>
     </div>
   );
 }

@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
-import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic } from "react-icons/fa";
+import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic, FaSun,FaMoon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { RegistroContext } from '../Context/ContextRegistro';
+import { ContextoOscuro } from "../Context/ContextModoOscuro";
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { name, email, password, image,setEmail,setPassword,setName} = useContext(RegistroContext);
-  const [isProfileOpen, setIsProfileOpen] = useState(true);
- 
+  const { name, email, password, image, setEmail, setPassword, setName } = useContext(RegistroContext);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const {dark,setDark} = useContext(ContextoOscuro);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -34,10 +36,10 @@ const NavBar = () => {
   }
 
   const handleLogout = () => {
-     setEmail('');
-     setPassword('');
-     setName('');
-     navigate('/')
+    setEmail('');
+    setPassword('');
+    setName('');
+    navigate('/')
   }
   return (
     <nav className="bg-gray-900 py-3">
@@ -47,7 +49,7 @@ const NavBar = () => {
           className="text-white cursor-pointer"
           style={{ fontSize: "2.8rem" }}
         />
-
+       
         <div className="hidden lg:flex items-center space-x-6">
           <span
             onClick={toHome}
@@ -66,21 +68,27 @@ const NavBar = () => {
           {name && email && password ? (
             <div className="flex items-center cursor-pointer" onClick={handleButton}>
               <span className="text-white text-base mr-2">{name}</span>
-              <img src={image} alt="Profile" className="w-8 h-8 rounded-full"/>
+              <img src={image} alt="Profile" className="w-8 h-8 rounded-full" />
               {isProfileOpen && (
-                  <div className="bg-white p-4 rounded shadow absolute mt-80 ">
-                    <img src={image} alt="Profile" className="w-16 h-16 rounded-full mx-auto mb-4"/>
-                    <p className="text-gray-800 text-lg mb-2 text-center">{name}</p>
-                    <p className="text-gray-600 text-sm mb-4">{email}</p>
-                    <button onClick={handleLogout} className="btn btn-dark btn-sm w-full">Logout</button>
-                  </div>
-                )}
+                <div className="bg-white p-4 rounded shadow absolute mt-80 ">
+                  <img src={image} alt="Profile" className="w-16 h-16 rounded-full mx-auto mb-4" />
+                  <p className="text-gray-800 text-lg mb-2 text-center">{name}</p>
+                  <p className="text-gray-600 text-sm mb-4">{email}</p>
+                  <button onClick={handleLogout} className="btn btn-dark btn-sm w-full">Logout</button>
+                </div>
+              )}
             </div>
           ) : (
-            <button onClick={toForm}  className="btn btn-dark btn-sm" style={{ fontSize: "1.2rem", marginLeft: "2rem" }}> Registrarse</button>
+            <button onClick={toForm} className="btn btn-dark btn-sm" style={{ fontSize: "1.2rem", marginLeft: "2rem" }}> Registrarse</button>
           )}
+       
+        { dark? ( 
+           <FaMoon className="text-blue-700  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)}/>
+           ):(  
+            <FaSun className="text-yellow-500  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)}/>
+           )}
         </div>
-        
+
         <button
           className="lg:hidden text-white text-2xl ml-2"
           onClick={toggleMenu}
@@ -125,7 +133,7 @@ const NavBar = () => {
                 </div>
                 {isProfileOpen && (
                   <div className="bg-white p-4 rounded shadow">
-                    <img src={image}alt="Profile"className="w-16 h-16 rounded-full mx-auto mb-4"/>
+                    <img src={image} alt="Profile" className="w-16 h-16 rounded-full mx-auto mb-4" />
                     <p className="text-gray-800 text-lg mb-2">{name}</p>
                     <p className="text-gray-600 text-sm mb-4">{email}</p>
                     <button onClick={handleLogout} className="btn btn-dark btn-sm w-full">Logout</button>

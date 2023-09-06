@@ -3,6 +3,7 @@ import { ShopingContext } from "../Context/ContextShoping";
 import { FiChevronDown } from 'react-icons/fi';
 import { BiSearch } from 'react-icons/bi';
 import Cards from "../Components/Cards";
+import { ContextoOscuro } from "../Context/ContextModoOscuro";
 
 const Home = () => {
   const { products, categories } = useContext(ShopingContext);
@@ -10,7 +11,7 @@ const Home = () => {
   const [filters, setFilters] = useState('');
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-
+  const {dark} = useContext(ContextoOscuro);
   useEffect(() => {
     
     let data = products;
@@ -30,7 +31,7 @@ const Home = () => {
       data = data.slice().sort((a, b) => b.title.localeCompare(a.title), 'es', { sensitivity: 'base' });
     }
 
-  
+   console.log(data);
     setFilteredData(data);
   }, [products, filters, search, order]);
 
@@ -44,10 +45,9 @@ const Home = () => {
       </select>
     );
   };
-
   return (
     <div>
-      <nav className="bg-gray-200 shadow-md">
+      <nav className= {dark? "bg-black shadow-md" : "bg-gray-200 shadow-md"}>
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center h-16 justify-center">
             <div className="flex items-center">

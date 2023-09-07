@@ -3,7 +3,7 @@ import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic, FaSun, FaMoon } fro
 import { useNavigate } from "react-router-dom";
 import { RegistroContext } from '../Context/ContextRegistro';
 import { ContextoOscuro } from "../Context/ContextModoOscuro";
-import { ShopingContext } from "../Context/ContextShoping"; // Importa el contexto del carrito
+import { ShopingContext } from "../Context/ContextShoping"; 
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const NavBar = () => {
   const { name, email, password, image, setEmail, setPassword, setName } = useContext(RegistroContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { dark, setDark } = useContext(ContextoOscuro);
-  const { cart } = useContext(ShopingContext); // Obtén el carrito del contexto
+  const { cart } = useContext(ShopingContext); 
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -67,8 +67,8 @@ const NavBar = () => {
             style={{ fontSize: "2rem" }}
           >
             <FaShoppingCart className="mr-4" />
-            {cart.length > 0 && ( // Mostrar la cantidad solo si hay productos en el carrito
-              <span className="bg-red-500 text-white text-xs absolute top-0 right-0 rounded-full px-1">
+            {cart.length > 0 && ( 
+              <span className="bg-red-500 text-white text-sm absolute top-0 right-0 rounded-full px-1.5">
                 {cart.length}
               </span>
             )}
@@ -87,7 +87,7 @@ const NavBar = () => {
               )}
             </div>
           ) : (
-            <button onClick={toForm} className="btn btn-dark btn-sm" style={{ fontSize: "1.2rem", marginLeft: "2rem" }}> Registrarse</button>
+            <button onClick={toForm} className="btn btn-dark btn-sm px-4" style={{ fontSize: "1.2rem", marginLeft: "2rem" }}> Register </button>
           )}
 
           {dark ? (
@@ -125,8 +125,8 @@ const NavBar = () => {
             >
               <FaShoppingCart className="mr-2" />
               Cart
-              {cart.length > 0 && ( // Mostrar la cantidad solo si hay productos en el carrito
-                <span className="bg-red-500 text-white text-xs absolute top-0 right-0 rounded-full px-1">
+              {cart.length > 0 && ( 
+                <span className="bg-red-500 text-white text-base absolute top-0 right-0 rounded-full px-1.5 font-kanit">
                   {cart.length}
                 </span>
               )}
@@ -159,7 +159,7 @@ const NavBar = () => {
                 className="btn btn-dark btn-sm w-full"
                 style={{ fontSize: "1.2rem" }}
               >
-                Registrarse
+                Register
               </button>
             )}
           </div>

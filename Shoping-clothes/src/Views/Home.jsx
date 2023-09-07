@@ -37,7 +37,7 @@ const Home = () => {
 
   const getSelectCategories = () => {
     return (
-      <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none" onChange={(e) => { setFilters(e.target.value) }}>
+      <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 pl-2 py-1 focus:border-indigo-500 focus:outline-none" onChange={(e) => { setFilters(e.target.value) }}>
         <option value=''>All</option>
         {categories.map((element) => (
           <option key={element} value={element}>{element}</option>
@@ -52,10 +52,10 @@ const Home = () => {
           <div className="flex items-center h-16 justify-center">
             <div className="flex items-center">
               <div className="relative mr-4">
-                <select className="appearance-none h-full rounded-md border border-gray-300 pr-8 focus:border-indigo-500 focus:outline-none" onChange={(e) => { setOrder(e.target.value) }}>
-                  <option value=''>Order by</option>
-                  <option value='asc'>ASC</option>
-                  <option value='des'>DES</option>
+                <select className="appearance-none h-full rounded-md border border-gray-300 pr-12 pl-2 py-1 focus:border-indigo-500 focus:outline-none" onChange={(e) => { setOrder(e.target.value) }}>
+                  <option  value=''>Order by</option>
+                  <option value='asc'>A-Z</option>
+                  <option value='des'>Z-A</option>
                 </select>
                 <span className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                   <FiChevronDown className="w-4 h-4" />
@@ -67,12 +67,12 @@ const Home = () => {
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <BiSearch className="w-5 h-5" />
                   </div>
-                  <input id="search" value={search} className="block w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Search" type="search" onChange={(e) => setSearch(e.target.value)} />
+                  <input id="search" value={search} className="block w-full rounded-md border border-gray-300 pl-10 pr-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Search..." type="search" onChange={(e) => setSearch(e.target.value)} />
                 </div>
               </div>
-              <div className="relative ml-4">
+              <div className="relative ml-4 ">
                 {getSelectCategories()}
-                <span className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                <span className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none ">
                   <FiChevronDown className="w-4 h-4" />
                 </span>
               </div>

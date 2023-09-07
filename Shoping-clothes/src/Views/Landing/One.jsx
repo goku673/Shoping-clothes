@@ -2,10 +2,14 @@ import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const One = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <div id="one">
+    <div id="one" className="font-kanit">
       <Splide options={{ type: "slide", perPage: 1, speed: 1250, rewind: true }}>
         <SplideSlide>
           <div className="h-screen relative">
@@ -15,9 +19,9 @@ const One = () => {
               className="min-h-full w-full"
             />
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 1</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Cozy Up in Style</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Perfect for chilly autumn days and beyond.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Explore Wool Coats</button>
             </div>
           </div>
         </SplideSlide>
@@ -29,9 +33,9 @@ const One = () => {
               className="min-h-full w-full"
             />
             <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 2</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Fall Jackets Collection</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Stay on-trend and cozy with our collection of autumn jackets. </p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>See Jackets</button>
             </div>
           </div>
         </SplideSlide>
@@ -43,9 +47,9 @@ const One = () => {
               className="min-h-full w-full"
             />
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 3</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Sweater Weather Vibes</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>mbrace the charm of autumn with our comfy sweaters.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>View More</button>
             </div>
           </div>
         </SplideSlide>
@@ -57,9 +61,9 @@ const One = () => {
               className="min-h-full w-full"
             />
              <div className="position-absolute top-50 start-20 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4 bold" style={{ fontWeight: "bold" }}>Texto encima de la imagen 4</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4 bold" style={{ fontWeight: "bold" }}>Autumn Essentials</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Fall in love with autumn fashion! Discover our collection of warm accessories.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Shop Autumn Styles</button>
             </div>
           </div>
         </SplideSlide>

@@ -103,13 +103,13 @@ const Carrito = () => {
     {/* Recuadro del precio total */}
 
         {cart.length === 0 ? (
-         <div className="text-center ">
-          <p className="text-2xl font-semibold mb-2 pb-2">Tu carrito está vacío.</p>
+         <div className= "text-center lg:mt-40 " >
+          <p className="text-2xl font-semibold mb-2 pb-2">Your Cart is Empty.</p>
           <button
-            className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900"
+            className= { dark ? "bg-blue-900 text-white px-4 py-2 rounded hover:bg-gray-800" : "bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900"}
             onClick={() => navigate("/home")}
           >
-            Volver a Home
+            GO back Home
           </button>
         </div>
       ) : (

@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import ProveedorCarrito from './Context/ContextCarrito.jsx'
 import ProveedorShoping from './Context/ContextShoping.jsx'
 import ProveedorCards from './Context/ContextCard.jsx'
+import ProveedorModoOscuro from './Context/ContextModoOscuro.jsx'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <ProveedorCarrito>
         <ProveedorRegistro>
           <ProveedorShoping>
-            <App />
+            <ProveedorModoOscuro>
+               <App />
+            </ProveedorModoOscuro>
           </ProveedorShoping>
         </ProveedorRegistro>
       </ProveedorCarrito>

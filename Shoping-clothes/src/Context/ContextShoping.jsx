@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export const ShopingContext = createContext();
 
@@ -7,6 +8,8 @@ const ShoppingProvider = (props) => {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cart, setCart] = useState([]);
+
 
   useEffect(() => {
     const getProducts = async () => {
@@ -25,8 +28,17 @@ const ShoppingProvider = (props) => {
     
   }, []);
 
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+  
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter((product) => product.id !== productId);
+    setCart(updatedCart);
+  };
+
   return (
-    <ShopingContext.Provider value={{products, categories}}>
+    <ShopingContext.Provider value={{products, categories, cart, addToCart,removeFromCart}}>
       {props.children}  
     </ShopingContext.Provider>
   );

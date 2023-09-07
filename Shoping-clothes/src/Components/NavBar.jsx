@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
-import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic, FaSun,FaMoon } from "react-icons/fa";
+import { FaHome, FaShoppingCart, FaBars, FaGalacticRepublic, FaSun, FaMoon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { RegistroContext } from '../Context/ContextRegistro';
 import { ContextoOscuro } from "../Context/ContextModoOscuro";
+import { ShopingContext } from "../Context/ContextShoping"; // Importa el contexto del carrito
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { name, email, password, image, setEmail, setPassword, setName } = useContext(RegistroContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const {dark,setDark} = useContext(ContextoOscuro);
+  const { dark, setDark } = useContext(ContextoOscuro);
+  const { cart } = useContext(ShopingContext); // Obtén el carrito del contexto
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -41,6 +43,7 @@ const NavBar = () => {
     setName('');
     navigate('/')
   }
+
   return (
     <nav className="bg-gray-900 py-3">
       <div className="container flex items-center justify-between">
@@ -49,7 +52,7 @@ const NavBar = () => {
           className="text-white cursor-pointer"
           style={{ fontSize: "2.8rem" }}
         />
-       
+
         <div className="hidden lg:flex items-center space-x-6">
           <span
             onClick={toHome}
@@ -60,10 +63,15 @@ const NavBar = () => {
           </span>
           <span
             onClick={toCarrito}
-            className="text-white cursor-pointer"
+            className="text-white cursor-pointer relative"
             style={{ fontSize: "2rem" }}
           >
             <FaShoppingCart className="mr-4" />
+            {cart.length > 0 && ( // Mostrar la cantidad solo si hay productos en el carrito
+              <span className="bg-red-500 text-white text-xs absolute top-0 right-0 rounded-full px-1">
+                {cart.length}
+              </span>
+            )}
           </span>
           {name && email && password ? (
             <div className="flex items-center cursor-pointer" onClick={handleButton}>
@@ -81,12 +89,12 @@ const NavBar = () => {
           ) : (
             <button onClick={toForm} className="btn btn-dark btn-sm" style={{ fontSize: "1.2rem", marginLeft: "2rem" }}> Registrarse</button>
           )}
-       
-        { dark? ( 
-           <FaMoon className="text-blue-700  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)}/>
-           ):(  
-            <FaSun className="text-yellow-500  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)}/>
-           )}
+
+          {dark ? (
+            <FaMoon className="text-blue-700  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)} />
+          ) : (
+            <FaSun className="text-yellow-500  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)} />
+          )}
         </div>
 
         <button
@@ -112,11 +120,16 @@ const NavBar = () => {
             </span>
             <span
               onClick={toCarrito}
-              className="text-white cursor-pointer block mb-2 flex flex-row items-center"
+              className="text-white cursor-pointer block mb-2 flex flex-row items-center relative"
               style={{ fontSize: "1.5rem" }}
             >
               <FaShoppingCart className="mr-2" />
               Cart
+              {cart.length > 0 && ( // Mostrar la cantidad solo si hay productos en el carrito
+                <span className="bg-red-500 text-white text-xs absolute top-0 right-0 rounded-full px-1">
+                  {cart.length}
+                </span>
+              )}
             </span>
             {name && email && password ? (
               <div className="mb-2">

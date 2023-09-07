@@ -22,11 +22,7 @@ const Carrito = () => {
   const [totalPrice, setTotalPrice] = useState(0); 
 
   useEffect(() => {
-  
-    const newTotalPrice = cartItems.reduce(
-      (acc, product) => acc + product.price * product.quantity,
-      0
-    );
+    const newTotalPrice = cartItems.reduce((acc, product) => acc + product.price * product.quantity,0);
     setTotalPrice(newTotalPrice);
   }, [cartItems]);
 
@@ -57,24 +53,19 @@ const Carrito = () => {
 
   
   const handleBuy = () => {
-  
     Swal.fire("Compra exitosa!", "Gracias por tu compra.", "success").then(() => {
-     
       navigate("/home");
-      
       emptyCart();
     });
   };
 
   return (
     <div className={`min-h-screen h-auto pt-4 pb-8 flex flex-col lg:flex-row justify-center items-center lg:items-start ${cardClass}`}>
-
     <div className="space-y-4 lg-4">
       {cartItems.map((product) => (
-        
         <div
           key={product.id}
-        className={dark ?   "bg-gray-400 p-4 border rounded shadow-md max-w-2xl mx-auto flex items-center" : "bg-white p-4 border rounded shadow-md max-w-2xl mx-auto flex items-center"}>
+           className={dark ?   "bg-gray-400 p-4 border rounded shadow-md max-w-2xl mx-auto flex items-center" : "bg-white p-4 border rounded shadow-md max-w-2xl mx-auto flex items-center"}>
           <div className="w-1/3">
             <img src={product.image} alt={product.title} className="w-full h-48 object-cover mb-2"/>
           </div>
@@ -93,38 +84,26 @@ const Carrito = () => {
                | Eliminar |
               </button>
               </div>
-
-
-            </div>
+             </div>
           </div>
         </div>
       ))}
     </div>
-    {/* Recuadro del precio total */}
-
         {cart.length === 0 ? (
          <div className="text-center ">
-          <p className="text-2xl font-semibold mb-2 pb-2">Tu carrito está vacío.</p>
-          <button
-            className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900"
-            onClick={() => navigate("/home")}
-          >
-            Volver a Home
-          </button>
+            <p className="text-2xl font-semibold mb-2 pb-2">Tu carrito está vacío.</p>
+            <button className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900" onClick={() => navigate("/home")}> Volver a Home </button>
         </div>
       ) : (
-        <div   className={ dark ?  "bg-gray-400 p-4 border rounded shadow-md w-80 ml-20 justify-content mt-4 lg:w-66 lg:mt-24" :"bg-white p-4 border rounded shadow-md w-80 ml-20 justify-content mt-4 lg:w-66 lg:mt-24"}>
+        <div className={ dark ?  "bg-gray-400 p-4 border rounded shadow-md w-80 ml-20 justify-content mt-4 lg:w-66 lg:mt-24" :"bg-white p-4 border rounded shadow-md w-80 ml-20 justify-content mt-4 lg:w-66 lg:mt-24"}>
           <p className="text-sm font-semibold mb-2">Productos ({cartItems.length})</p>
           <p className="text-xl font-semibold mb-2 pb-2">Precio Total: ${totalPrice.toFixed(2)} </p>
           <button className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900"  onClick={handleBuy}>Comprar</button>
         </div>
       )}
-    
-    
      </div>
   );
     
 }
    
-  
 export default Carrito;

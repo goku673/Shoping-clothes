@@ -37,8 +37,12 @@ const ShoppingProvider = (props) => {
     setCart(updatedCart);
   };
 
+  const emptyCart = () => {
+    setCart([]);
+  };
+
   return (
-    <ShopingContext.Provider value={{products, categories, cart, addToCart,removeFromCart}}>
+    <ShopingContext.Provider value={{products, categories, cart, addToCart,removeFromCart,emptyCart}}>
       {props.children}  
     </ShopingContext.Provider>
   );

@@ -23,7 +23,7 @@ servidor.use(bodyParser.json());
 
 
 servidor.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5174');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -37,7 +37,7 @@ servidor.use((req, res, next) => {
 
 servidor.use(router);
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3001;
 
 servidor.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

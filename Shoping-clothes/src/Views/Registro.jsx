@@ -42,7 +42,7 @@ const Registro = () => {
     }
     // Petición HTTP para guardar en base de datos
 
-    axios.post('http://localhost:3003/user/mgDB', {
+  await  axios.post('http://localhost:3001/user/mgDB', {
       name,
       email,
       password

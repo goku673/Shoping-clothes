@@ -1,10 +1,14 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { useNavigate } from "react-router-dom";
 
 const Two = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <div id="two">
+    <div id="two" className="font-kanit">
     <Splide options={{ type: "slide", perPage: 1, speed: 1250, rewind:true }}>
       <SplideSlide>
         <div className="h-screen flex justify-center items-center"> 
@@ -14,9 +18,9 @@ const Two = () => {
             className="min-h-full w-full"
           />
           <div className="position-absolute top-50 start-40 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 1</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Latest Arrivals</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Explore our newest collection of trendy clothing.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Shop Now</button>
             </div>
         </div>
       </SplideSlide>
@@ -28,9 +32,9 @@ const Two = () => {
             className="min-h-full w-full"
           />
           <div className="position-absolute top-50 start-40 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 2</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Fall/Winter Collection</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Stay cozy and stylish this season with our winter fashion.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>View More</button>
             </div>
         </div>
       </SplideSlide>
@@ -42,9 +46,9 @@ const Two = () => {
             className="min-h-full w-full"
           />
           <div className="position-absolute top-50 start-40 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 3</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Special Offers</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Don't miss out on our limited-time deals and discounts.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>View Offers</button>
             </div>
         </div>
       </SplideSlide>
@@ -56,9 +60,9 @@ const Two = () => {
             className="min-h-full w-full"
           />
           <div className="position-absolute top-50 start-40 translate-middle-y text-center text-white p-4">
-              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>Texto encima de la imagen 4</h2>
-              <p className="lead" style={{ fontWeight: "bold" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <button className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Botón</button>
+              <h2 className="display-4 mb-4" style={{ fontWeight: "bold" }}>New Pants!</h2>
+              <p className="lead" style={{ fontWeight: "bold" }}>Discover the timeless allure of our jeans collection.</p>
+              <button onClick={()=>navigate('/home')} className="btn btn-dark btn-xl btn-lg" style={{ fontWeight: "bold" }}>Go to Shop</button>
             </div>
         </div>
       </SplideSlide>

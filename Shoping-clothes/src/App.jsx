@@ -15,7 +15,7 @@ function App() {
   const shouldShowNavBar = location.pathname !== '/form';
   return (
     
-    <div>
+    <div className='font-kanit'>
     {shouldShowNavBar && <NavBar />}
     <Routes>
       <Route path="/" element={<Landing />} />

@@ -46,12 +46,12 @@ const Cards = ({ data }) => {
       (<div className='flex  text-end'>No results of your search were found!!!!</div>)
       : (
         data.map((item, index) => (
-          <div key={index} className="rounded-lg shadow-md p-4">
+          <div key={index} className={dark ? "rounded-lg shadow-xl shadow-black p-4" : "rounded-lg shadow-lg p-4" }>
             <img src={item.image} alt={item.title} className="w-full h-48 object-cover mb-4" />
-            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-            <p className="text-gray-300 mb-2">${item.price}</p>
+            <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+            <p className={dark? "text-gray-300 mb-2 font-semibold" : "text-black-200 mb-2 font-semibold"}>${item.price}</p>
             <p className="text-gray-500">{item.category}</p>
-            <button className='bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900' onClick={() => handleAddToCartClick(item)}>Agregar al carrito</button>
+            <button className={dark ? 'bg-blue-900 text-white px-4 py-2 rounded hover:bg-gray-800 font-semibold' : 'bg-gray-900 text-white px-4 py-2 rounded hover:bg-blue-900 font-semibold'} onClick={() => handleAddToCartClick(item)}>Add to Cart</button>
           </div>
         ))
       )}

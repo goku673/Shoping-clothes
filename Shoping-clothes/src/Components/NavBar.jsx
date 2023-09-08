@@ -131,6 +131,12 @@ const NavBar = () => {
                 </span>
               )}
             </span>
+            
+          {dark ? (
+            <FaMoon className="text-blue-700  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)} />
+          ) : (
+            <FaSun className="text-yellow-500  cursor-pointer" style={{ fontSize: "2rem" }} onClick={() => setDark(!dark)} />
+          )}
             {name && email && password ? (
               <div className="mb-2">
                 <div

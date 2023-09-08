@@ -1,33 +1,44 @@
-const express    =  require('express');
-const mongoose   =  require('mongoose');
-const morgan     =  require('morgan');
-const bodyParser =  require('body-parser');
-const router     =  require('./routes/index');
+
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const router = require('./routes/index');
+require('dotenv').config();
+const {USER,PASSWORD,DB_NAME}= process.env;
 
 
-//connecion a base de datos
-//el usuario nos creamos en mongo
-const user = 'userforshoping';
-const password = '65DD1R913zTMa63M';
-const DB_Name = 'shoping'
-const uri  =  `mongodb+srv://${user}:${password}@cluster0.offjxfc.mongodb.net/${DB_Name}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.offjxfc.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
-mongoose.connect(uri,
-    { useNewUrlParser : true , useUnifiedTopology : true} 
-    )
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to the database momgoo'))
+  .catch((e) => console.log(e));
 
-    .then( () => console.log('connected @'))
-    .catch(e => console.log(e));
+const servidor = express();
 
-
-const servidor =  express();
 servidor.use(morgan('dev'));
-servidor.use(bodyParser.urlencoded({extended:true}));
+      servidor.use(bodyParser.urlencoded({ extended: true }));
 servidor.use(bodyParser.json());
-servidor.use(router)
+
+
+servidor.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  
+  if (req.method === 'OPTIONS') {
+    res.status(200).send();
+  } else {
+    next();
+  }
+});
+
+servidor.use(router);
+
 const PORT = process.env.PORT || 3003;
 
-
 servidor.listen(PORT, () => {
-    console.log( `servidor corriendo en el puerto ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});
